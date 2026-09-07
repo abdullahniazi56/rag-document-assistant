@@ -26,7 +26,8 @@ if not api_key:
 # 2. Client & App Setup
 client = genai.Client(api_key=api_key)
 
-qdrant = QdrantClient(url="http://localhost:6333")
+qdrant_url = os.getenv("QDRANT_URL", "http://localhost:6333")
+qdrant = QdrantClient(url=qdrant_url)
 
 COLLECTION_NAME = "documents"
 VECTOR_SIZE = 3072
