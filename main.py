@@ -322,18 +322,6 @@ def list_documents():
             for name, count in summary.items()
         ]
 
-frontend_path = pathlib.Path(__file__).parent / "frontend" / "dist"
-
-if frontend_path.exists():
-    app.mount("/assets", StaticFiles(directory=frontend_path / "assets"), name="assets")
-
-    @app.get("/{full_path:path}")
-    async def serve_frontend(full_path: str):
-        file_path = frontend_path / full_path
-        if file_path.is_file():
-            return FileResponse(file_path)
-        return FileResponse(frontend_path / "index.html")
-    
 @app.delete("/documents/{filename}")
 def delete_document(filename: str):
     qdrant.delete(
@@ -346,5 +334,17 @@ def delete_document(filename: str):
                 )
             ]
         ),
-    )    
+    )
     return {"deleted": filename, "status": "ok"}
+
+frontend_path = pathlib.Path(__file__).parent / "frontend" / "dist"
+
+if frontend_path.exists():
+    app.mount("/assets", StaticFiles(directory=frontend_path / "assets"), name="assets")
+
+    @app.get("/{full_path:path}")
+    async def serve_frontend(full_path: str):
+        file_path = frontend_path / full_path
+        if file_path.is_file():
+            return FileResponse(file_path)
+        return FileResponse(frontend_path / "index.html")
