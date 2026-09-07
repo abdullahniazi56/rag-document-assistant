@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import ReactMarkdown from "react-markdown"
 import "./index.css"
 
-const API_URL = "http://127.0.0.1:8000"
+const API_URL = ""
 
 export default function App() {
   const [file, setFile] = useState(null)
