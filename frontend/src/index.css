@@ -1,0 +1,217 @@
+:root {
+  font-family: Inter, system-ui, sans-serif;
+  color: #e7edf9;
+  background: #0b1020;
+  font-synthesis: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 75% 0%, #17365c 0%, transparent 35%),
+    #0b1020;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  border: 0;
+  border-radius: 8px;
+  padding: 12px 18px;
+  color: #06111d;
+  background: #39c6ef;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.app {
+  width: min(960px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 72px 0;
+}
+
+.hero {
+  margin-bottom: 40px;
+}
+
+.eyebrow,
+.section-label {
+  margin: 0 0 10px;
+  color: #39c6ef;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 12px;
+  font-size: clamp(2.5rem, 7vw, 4.8rem);
+  letter-spacing: -0.06em;
+}
+
+h2 {
+  margin-bottom: 8px;
+}
+
+.subtitle,
+.upload-card p:not(.section-label),
+.empty-state {
+  color: #a9b6ca;
+  line-height: 1.6;
+}
+
+.upload-card,
+.chat-section {
+  border: 1px solid #2a3b55;
+  border-radius: 16px;
+  background: rgba(19, 31, 51, 0.88);
+}
+
+.upload-card {
+  display: grid;
+  gap: 20px;
+  padding: 28px;
+  margin-bottom: 24px;
+}
+
+.upload-form,
+.question-form {
+  display: flex;
+  gap: 12px;
+}
+
+.upload-form input,
+.question-form input {
+  width: 100%;
+  border: 1px solid #3a4e6c;
+  border-radius: 8px;
+  padding: 12px;
+  color: #dbe8fa;
+  background: #0d1728;
+}
+
+.status {
+  margin: 0;
+  color: #82e7b3;
+}
+
+.chat-section {
+  padding: 28px;
+}
+
+.chat-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: start;
+  margin-bottom: 24px;
+}
+
+.live-dot {
+  padding: 7px 10px;
+  border-radius: 99px;
+  color: #82e7b3;
+  background: #102d2b;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.messages {
+  display: grid;
+  gap: 16px;
+  min-height: 220px;
+  margin-bottom: 20px;
+}
+
+.message {
+  padding: 20px;
+  border-left: 3px solid #39c6ef;
+  border-radius: 4px 12px 12px 4px;
+  background: #101c2f;
+}
+
+.question {
+  color: #82dff8;
+  font-weight: 700;
+}
+
+.answer {
+  white-space: pre-wrap;
+  line-height: 1.65;
+}
+
+.sources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+  color: #a9b6ca;
+  font-size: 0.82rem;
+}
+
+.source {
+  padding: 4px 8px;
+  border-radius: 5px;
+  color: #b8c9de;
+  background: #1c2d47;
+}
+
+@media (max-width: 640px) {
+  .app {
+    padding: 40px 0;
+  }
+
+  .upload-form,
+  .question-form,
+  .chat-heading {
+    flex-direction: column;
+  }
+
+  .upload-form button,
+  .question-form button {
+    width: 100%;
+  }
+}
+
+.doc-list {
+  margin-top: 16px;
+  display: grid;
+  gap: 8px;
+}
+
+.doc-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: #101c2f;
+  color: #b8c9de;
+}
+
+.delete-btn {
+  background: #e74c3c;
+  color: white;
+  padding: 6px 12px;
+  font-size: 0.8rem;
+}
