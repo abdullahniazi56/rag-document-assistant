@@ -12,6 +12,9 @@ from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, PointStruct, VectorParams
 from fastapi.middleware.cors import CORSMiddleware
 from qdrant_client.models import Filter, FieldCondition, MatchValue
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+import pathlib
 
 # 1. Load Environment Variables
 load_dotenv()
@@ -32,7 +35,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -319,7 +322,18 @@ def list_documents():
             for name, count in summary.items()
         ]
 
+frontend_path = pathlib.Path(__file__).parent / "frontend" / "dist"
 
+if frontend_path.exists():
+    app.mount("/assets", StaticFiles(directory=frontend_path / "assets"), name="assets")
+
+    @app.get("/{full_path:path}")
+    async def serve_frontend(full_path: str):
+        file_path = frontend_path / full_path
+        if file_path.is_file():
+            return FileResponse(file_path)
+        return FileResponse(frontend_path / "index.html")
+    
 @app.delete("/documents/{filename}")
 def delete_document(filename: str):
     qdrant.delete(
